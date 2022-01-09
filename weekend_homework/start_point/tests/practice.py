@@ -106,22 +106,27 @@ def get_customer_pet_count(customers1):
     
 
 def add_pet_to_customer(new_pet1, customers1):
-
+    pet_count = 0
 
     for customer in customers1:
         customer["pets"].append(new_pet1)
+        print(len(customer["pets"]))
+        pet_count += len(customer["pets"])
+    
+    print(pet_count)
+    # print(customers1)
 
-    print(customers1)
+add_pet_to_customer(new_pet, customers)
 
 # add_pet_to_customer(new_pet, customers)
 
 
     
-def get_customer_index_by_name(customer_name, customers1):
+# def get_customer_index_by_name(customer_name, customers1):
 
     
 
-print(get_customer_index_by_name("Bob", customers))
+# # print(get_customer_index_by_name("Bob", customers))
    
 
 

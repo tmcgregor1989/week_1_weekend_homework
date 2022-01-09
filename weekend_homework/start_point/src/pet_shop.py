@@ -61,61 +61,68 @@ def add_pet_to_stock(pet_shop, new_pet):
 
 
 
-def get_customer_cash(customers):
+def get_customer_cash(customer):
 
-    for customer in customers:
-        return customers["cash"]
+    return customer["cash"]
 
      
         
 
-def remove_customer_cash(customers, cost):
-     for customer in customers:
-        customers["cash"] -= cost
-        return customers["cash"]
+def remove_customer_cash(customer, cost):
+    
+    customer["cash"] -= cost
+    return customer["cash"]
 
 
         
 
 
 
-def get_customer_pet_count(customers):
+def get_customer_pet_count(customer):
+    pet_count = 0
 
-
-    for customer in customers:
-        pet_count = 0
-        pet_count += len(customers["pets"])
+    
+    pet_count += len(customer["pets"])
 
     return pet_count
 
 
 
 
-def add_pet_to_customer(customers, new_pet):
-
-    for customer in customers:
-        customer["pets"].append(new_pet)
+def add_pet_to_customer(customer, new_pet):
     
-    get_customer_pet_count(customers)
+    customer["pets"].append(new_pet)
+    # return len(customers["pets"])
+
+    # return pet_count
+    
+    get_customer_pet_count(customer)
+
+def customer_can_afford_pet(customer, new_pet):
+    
+    if customer["cash"] >= new_pet["price"]:
+        return True
+    else:
+        return False
 
 
-def customer_can_afford_pet(customers, new_pet):
-    for customer in customers:
-        if customers["cash"] >= new_pet["price"]:
-            return True
-        else:
-            return False
 
 
-def sell_pet_to_customer(pet_shop, pet_name, customers):
+def sell_pet_to_customer(pet_shop, pet_name, customer):
+    pets_sold = 1
+    cost = 900
 
-    for customer in customers:
 
-        find_pet_by_name(pet_shop, pet_name)
-        get_customer_pet_count(customers)
-        get_pets_sold(pet_shop)
-        get_customer_cash(customers)
-        get_total_cash(pet_shop)
+    
+    find_pet_by_name(pet_shop, pet_name)
+    add_pet_to_customer(customer, pet_name)
+    get_customer_pet_count(customer)
+    increase_pets_sold(pet_shop, pets_sold)
+    get_pets_sold(pet_shop)
+    remove_customer_cash(customer, cost)
+    get_customer_cash(customer)
+    add_or_remove_cash(pet_shop, cost)
+    get_total_cash(pet_shop)
 
 
 
